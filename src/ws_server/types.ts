@@ -1,4 +1,7 @@
+import { WebSocket } from "ws";
+
 export interface Player {
+  [x: string]: unknown;
   name: string;
   password: string;
   index: string;
