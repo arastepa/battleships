@@ -3,7 +3,7 @@ const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
 
 module.exports = {
   mode: "production",
-  entry: "./src/app.ts",
+  entry: "./index.ts",
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",

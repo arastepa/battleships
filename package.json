@@ -25,6 +25,8 @@
         "webpack-cli": "^6.0.1"
     },
     "dependencies": {
+        "node-polyfill-webpack-plugin": "^4.1.0",
+        "ts-loader": "^9.5.2",
         "ts-node": "^10.9.2",
         "ws": "^8.8.0"
     }
