@@ -1,3 +1,4 @@
+import { handleAttackMsg } from "./handlers/handleAttackMsg";
 import { handleRoomMessage } from "./handlers/roomHandler";
 import { handleShipsMessage } from "./handlers/shipsHandler";
 import { addPlayer, state } from "./state";
@@ -83,10 +84,8 @@ export function handleMessage(
       handleShipsMessage(ws, msg);
       break;
     case "attack":
-      // Handle attack
-      break;
     case "randomAttack":
-      // Handle random attack
+      handleAttackMsg(ws, msg);
       break;
     default:
       ws.send(
