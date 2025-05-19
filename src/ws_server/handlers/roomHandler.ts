@@ -6,8 +6,10 @@ export const handleRoomMessage = (
   ws: WebSocket,
   msg: { type: string; data: string; id: number },
 ) => {
+  console.log("Received message:", msg);
   const player = Object.values(state.players).find((p) => p.ws === ws);
   if (!player) {
+    console.log("Player not registered");
     ws.send(
       JSON.stringify({
         type: "error",
@@ -23,6 +25,7 @@ export const handleRoomMessage = (
       room.roomUsers.some((u) => u.index === player.index),
     );
     if (alreadyInRoom) {
+      console.log("Player already in a room");
       ws.send(
         JSON.stringify({
           type: "error",
@@ -46,6 +49,7 @@ export const handleRoomMessage = (
     try {
       data = typeof msg.data === "string" ? JSON.parse(msg.data) : msg.data;
     } catch {
+      console.log("Invalid data format");
       ws.send(
         JSON.stringify({
           type: "error",
@@ -58,6 +62,7 @@ export const handleRoomMessage = (
     const { indexRoom } = data;
     const room = state.rooms[indexRoom];
     if (!room) {
+      console.log("Room not found");
       ws.send(
         JSON.stringify({
           type: "error",
@@ -71,7 +76,7 @@ export const handleRoomMessage = (
       room.roomUsers.some((u) => u.index === player.index),
     );
     if (alreadyInRoom) {
-      console.log("Player already in a room");
+      console.log("Player already in a room...");
       ws.send(
         JSON.stringify({
           type: "error",

@@ -1,3 +1,4 @@
+import { broadcastWinners } from "../messageHandler";
 import { state } from "../state";
 import { WebSocket } from "ws";
 
@@ -181,6 +182,7 @@ export function handleAttackMsg(
     const winner = game.players[indexPlayer];
     if (winner) {
       state.winners[winner.name] = (state.winners[winner.name] || 0) + 1;
+      broadcastWinners();
     }
     game.finished = true;
     return;

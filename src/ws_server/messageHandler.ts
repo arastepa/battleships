@@ -19,7 +19,7 @@ export function broadcastRooms() {
   Object.values(state.players).forEach((p) => p.ws?.send(msg));
 }
 
-function broadcastWinners() {
+export function broadcastWinners() {
   const winners = Object.entries(state.winners).map(([name, wins]) => ({
     name,
     wins,
@@ -55,6 +55,9 @@ export function handleMessage(
         return;
       }
       let player = state.players[name];
+      if (player) {
+        player.ws = ws;
+      }
       if (!player) {
         player = addPlayer(name, password, ws);
       }
